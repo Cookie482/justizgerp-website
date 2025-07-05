@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Justiz-NRW – Deine Karriere im realistischen Roleplay der Justiz Nordrhein-Westfalen. Jetzt bewerben und Teil des Teams werden!" />
+  <title>Justiz-NRW</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-color: #0f0f0f;
+      --text-color: #f0f0f0;
+      --section-bg: #1c1c1c;
+      --input-bg: #222;
+      --border-color: #444;
+      --accent: #0af;
+      --footer-bg: #0f0f0f;
+    }
+
+    [data-theme="light"] {
+      --bg-color: #f0f0f0;
+      --text-color: #0f0f0f;
+      --section-bg: #ffffff;
+      --input-bg: #fff;
+      --border-color: #ccc;
+      --accent: #0066ff;
+      --footer-bg: #ddd;
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      transition: background-color 0.3s, color 0.3s;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: linear-gradient(to right, var(--bg-color), var(--section-bg));
+      padding: 30px 20px;
+      text-align: center;
+      border-bottom: 2px solid var(--accent);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    header img {
+      height: 60px;
+      margin-bottom: 10px;
+      filter: drop-shadow(0 0 2px var(--accent));
+    }
+
+    #toggle-theme {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--accent);
+      color: #000;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.3s;
+    }
+    #toggle-theme:hover,
+    #toggle-theme:focus {
+      background-color: #08c;
+      outline: none;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 25px;
+      margin-top: 10px;
+    }
+
+    nav a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: 8px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    nav a:hover,
+    nav a:focus {
+      background: var(--accent);
+      color: #000;
+      outline: none;
+    }
+
+    main {
+      flex-grow: 1;
+      padding: 40px 20px;
+      max-width: 960px;
+      margin: auto;
+      width: 100%;
+    }
+
+    section {
+      margin-bottom: 80px;
+      background-color: var(--section-bg);
+      padding: 30px 25px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    }
+
+    h1, h2, h3 {
+      color: var(--accent);
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    p {
+      margin-bottom: 15px;
+      font-size: 1rem;
+    }
+
+    form {
+      display: grid;
+      gap: 15px;
+    }
+
+    input, textarea, select {
+      font-family: inherit;
+      font-size: 1rem;
+      padding: 12px;
+      background-color: var(--input-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-color);
+      border-radius: 6px;
+      resize: vertical;
+      transition: border-color 0.3s;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--accent);
+      outline: none;
+    }
+
+    button {
+      background-color: var(--accent);
+      color: #000;
+      border: none;
+      padding: 14px;
+      border-radius: 6px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      user-select: none;
+    }
+
+    button:hover,
+    button:focus {
+      background-color: #08c;
+      outline: none;
+    }
+
+    .info-box {
+      background-color: var(--bg-color);
+      border-left: 4px solid var(--accent);
+      padding: 20px;
+      margin-bottom: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 5px var(--accent);
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      background-color: var(--footer-bg);
+      border-top: 2px solid var(--accent);
+      font-size: 0.9em;
+      color: #aaa;
+      flex-shrink: 0;
+    }
+
+    #leitung {
+      text-align: center;
+    }
+
+    .team-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .team-member {
+      background-color: var(--section-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 20px;
+      width: 200px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: default;
+    }
+
+    .team-member:hover,
+    .team-member:focus-within {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px var(--accent);
+      outline: none;
+    }
+
+    .team-member img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-bottom: 15px;
+      object-fit: cover;
+      filter: drop-shadow(0 0 2px var(--accent));
+    }
+
+    .team-member h3 {
+      margin: 10px 0 5px;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .team-member p {
+      margin: 0;
+      font-size: 1rem;
+      color: var(--text-color);
+    }
+
+    @media (max-width: 600px) {
+      .team-container {
+        gap: 20px;
+      }
+      .team-member {
+        width: 140px;
+        padding: 15px;
+      }
+      main {
+        padding: 20px 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img
+      src="https://cdn.discordapp.com/attachments/1201857908305047643/1389239793333833838/2560px-Justizministerium_Nordrhein-Westfalen_logo.png?ex=6869d4a1&is=68688321&hm=5f5251cb559ccf81d59a9ab186ee7861b0e8e6a4cd5522b1918a087ed1f6e2c1&"
+      alt="Justiz.NRW Logo"
+      loading="lazy"
+    />
+    <button id="toggle-theme" aria-pressed="true" aria-label="Modus wechseln">☀️ Hellmodus</button>
+    <nav aria-label="Hauptnavigation">
+      <a href="#start">Startseite</a>
+      <a href="#ueber-uns">Über uns</a>
+      <a href="#vorteile">Vorteile</a>
+      <a href="#bewerbung">Bewerbung</a>
+      <a href="#leitung">Leitungsteam</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="start" tabindex="-1">
+      <h1>Willkommen bei Justiz-NRW</h1>
+      <p>Deine Karriere in der Justiz beginnt hier. Werde Teil einer realistischen und modernen Justizwelt im Roleplay.</p>
+    </section>
+
+    <section id="ueber-uns" tabindex="-1">
+      <h2>Über uns</h2>
+      <p>Die Justiz des Landes Nordrhein-Westfalen steht für Recht, Ordnung und ein faires Miteinander. Wir legen großen Wert auf realistische Rollenspielerfahrungen, in denen jeder Spieler seinen Teil zu einer funktionierenden Justiz beitragen kann.</p>
+    </section>
+
+    <section id="vorteile" tabindex="-1">
+      <h2>Warum Justiz-NRW?</h2>
+      <div class="info-box">
+        <h3>✔ Realistisches RP</h3>
+        <p>Wir bieten ein einzigartiges RP-Erlebnis mit echten Verfahren und spannenden Gerichtsfällen.</p>
+      </div>
+      <div class="info-box">
+        <h3>✔ Strukturierte Laufbahn</h3>
+        <p>Steige vom Anwärter bis zum Richter auf – eine klare Karriereleiter mit echten Entwicklungsmöglichkeiten.</p>
+      </div>
+      <div class="info-box">
+        <h3>✔ Modern & Bürgernah</h3>
+        <p>Wir setzen auf Transparenz, Digitalisierung und Fairness im Umgang mit Bürgern und Teammitgliedern.</p>
+      </div>
+    </section>
+
+    <section id="bewerbung" tabindex="-1">
+      <h2>Jetzt bewerben</h2>
+      <form id="bewerbungsformular" aria-label="Bewerbungsformular Justiz-NRW">
+        <input type="text" name="name" placeholder="RP-Name" required aria-required="true" />
+        <input type="number" name="alter" placeholder="Alter im RP" required aria-required="true" min="14" max="99" />
+        <input type="text" name="discord" placeholder="Discord-Tag (z.B. Name#1234)" required aria-required="true" pattern=".+#\d{4}" title="Discord-Tag muss im Format Name#1234 sein" />
+        <input type="text" name="rolle" placeholder="Gewünschte Rolle" required aria-required="true" />
+        <textarea name="erfahrung" placeholder="Erfahrung mit Justiz oder RP" rows="4" required aria-required="true"></textarea>
+        <textarea name="motivation" placeholder="Warum möchtest du bei Justiz-NRW mitmachen?" rows="4" required aria-required="true"></textarea>
+        <button type="submit">Bewerbung absenden</button>
+      </form>
+    </section>
+
+    <section id="leitung" tabindex="-1" aria-label="Leitungsteam Justiz-NRW">
+      <h2>Leitungsteam</h2>
+      <div class="team-container">
+        <article class="team-member" tabindex="0">
+          <img src="https://i.pravatar.cc/80?u=richter" alt="Profilbild von Richter Max Mustermann" />
+          <h3>Richter Max Mustermann</h3>
+          <p>Leitender Richter</p>
+        </article>
+        <article class="team-member" tabindex="0">
+          <img src="https://i.pravatar.cc/80?u=staatsanwalt" alt="Profilbild von Staatsanwalt Anna Beispiel" />
+          <h3>Staatsanwalt Anna Beispiel</h3>
+          <p>Staatsanwältin</p>
+        </article>
+        <article class="team-member" tabindex="0">
+          <img src="https://i.pravatar.cc/80?u=verteidiger" alt="Profilbild von Verteidiger Karl Demo" />
+          <h3>Verteidiger Karl Demo</h3>
+          <p>Verteidiger</p>
+        </article>
+        <article class="team-member" tabindex="0">
+          <img src="https://i.pravatar.cc/80?u=verwaltung" alt="Profilbild von Verwaltung Lisa Muster" />
+          <h3>Lisa Muster</h3>
+          <p>Justizverwaltung</p>
+        </article>
+      </div>
+    </section>
+
+ <section id="kontakt" tabindex="-1">
+  <h2>Kontakt</h2>
+  <p>Du hast Fragen oder möchtest mit uns Kontakt aufnehmen? Schreib uns gerne auf Discord!</p>
+  <p>
+    <a href="https://discord.gg/ACYJRGRRK2" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #5865F2; font-weight: bold; display: inline-flex; align-items: center;">
+      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="Discord Logo" style="width: 24px; height: 24px; margin-right: 8px;">
+      Zum Discord Server
+    </a>
+  </p>
+</section>
+  </main>
+
+<footer style="background-color:#222; color:#eee; padding:20px; text-align:center; font-size:14px; font-family: Arial, sans-serif;">
+  <p>&copy; 2025 Justiz-NRW. Alle Rechte vorbehalten.</p>
+  
+  <p>
+    <a href="#" onclick="showSection('impressum'); return false;" style="color:#eee; text-decoration:none; margin:0 10px;">Impressum</a> |
+    <a href="#" onclick="showSection('datenschutz'); return false;" style="color:#eee; text-decoration:none; margin:0 10px;">Datenschutz</a> |
+    <a href="https://discord.gg/ACYJRGRRK2" target="_blank" style="color:#eee; text-decoration:none; margin:0 10px;">Discord</a> |
+  </p>
+</footer>
+
+  <script>
+    const toggleBtn = document.getElementById('toggle-theme');
+    const html = document.documentElement;
+
+    function updateButtonText() {
+      if (html.getAttribute('data-theme') === 'dark') {
+        toggleBtn.textContent = '☀️ Hellmodus';
+        toggleBtn.setAttribute('aria-pressed', 'true');
+      } else {
+        toggleBtn.textContent = '🌙 Dunkelmodus';
+        toggleBtn.setAttribute('aria-pressed', 'false');
+      }
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      if (html.getAttribute('data-theme') === 'dark') {
+        html.setAttribute('data-theme', 'light');
+      } else {
+        html.setAttribute('data-theme', 'dark');
+      }
+      updateButtonText();
+    });
+
+    updateButtonText();
+
+    // Einfaches Formular-Feedback (nur Frontend)
+    document.getElementById('bewerbungsformular').addEventListener('submit', e => {
+      e.preventDefault();
+      alert('Deine Bewerbung wurde erfolgreich abgeschickt. Danke!');
+      e.target.reset();
+    });
+
+    document.getElementById('kontaktformular').addEventListener('submit', e => {
+      e.preventDefault();
+      alert('Deine Nachricht wurde erfolgreich gesendet. Danke!');
+      e.target.reset();
+    });
+  </script>
+</body>
+</html>
